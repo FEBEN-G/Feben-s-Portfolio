@@ -28,9 +28,9 @@ export function Contact() {
 
           <ul className="rounded-3xl border border-white/10 bg-white/[0.02] p-2">
             {[
-              { icon: Mail, label: "hello@ayush.dev", href: "mailto:hello@ayush.dev" },
-              { icon: Github, label: "github.com/ayush", href: "#" },
-              { icon: Linkedin, label: "linkedin.com/in/ayush", href: "#" },
+              { icon: Mail, label: "hello@feben.dev", href: "mailto:hello@feben.dev" },
+              { icon: Github, label: "github.com/feben", href: "#" },
+              { icon: Linkedin, label: "linkedin.com/in/feben", href: "#" },
               { icon: MapPin, label: "India · Remote friendly", href: "#" },
             ].map((c) => (
               <li key={c.label}>
