@@ -57,7 +57,7 @@ export function Hero() {
           transition={{ delay: 0.5, duration: 0.6 }}
           className="mt-8 flex flex-wrap items-center gap-3 text-lg text-muted-foreground sm:text-xl"
         >
-          <span className="text-foreground/80">I'm Ayush —</span>
+          <span className="text-foreground/80">I'm Feben —</span>
           <div className="relative h-8 overflow-hidden">
             {roles.map((r, i) => (
               <motion.span
