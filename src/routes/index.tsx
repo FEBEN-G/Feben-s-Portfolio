@@ -9,6 +9,8 @@ import { Projects } from "../components/portfolio/Projects";
 import { Experience } from "../components/portfolio/Experience";
 import { Contact } from "../components/portfolio/Contact";
 import { Footer } from "../components/portfolio/Footer";
+import { Settings } from "../components/portfolio/Settings";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -45,6 +47,7 @@ function Index() {
         <Contact />
       </main>
       <Footer />
+      <Settings />
     </div>
   );
 }
