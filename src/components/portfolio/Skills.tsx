@@ -71,14 +71,14 @@ export function Skills() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.5, delay: i * 0.04 }}
-            className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-5 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.04]"
+            className="group relative overflow-hidden surface-panel p-5 transition-all duration-500 hover:-translate-y-1 hover:border-brand/40"
           >
             <div
               aria-hidden
               className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-              style={{ background: "radial-gradient(400px circle at var(--mx,50%) var(--my,50%), oklch(0.65 0.19 258 / 0.15), transparent 60%)" }}
+              style={{ background: "radial-gradient(400px circle at var(--mx,50%) var(--my,50%), oklch(0.78 0.155 70 / 0.12), transparent 60%)" }}
             />
-            <div className="glass mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl">
+            <div className="glass mb-4 inline-flex h-10 w-10 items-center justify-center" style={{ borderRadius: "var(--radius)" }}>
               <c.icon className="h-4.5 w-4.5 text-brand" />
             </div>
             <div className="text-base font-semibold tracking-tight">{c.name}</div>
@@ -87,7 +87,7 @@ export function Skills() {
               {c.stack.map((s) => (
                 <li
                   key={s}
-                  className="rounded-full border border-white/10 bg-white/[0.03] px-2 py-0.5 text-[11px] text-muted-foreground transition-colors group-hover:border-white/20 group-hover:text-foreground"
+                  className="chip px-2 py-0.5 text-[11px] text-muted-foreground transition-colors group-hover:border-brand/30 group-hover:text-foreground"
                 >
                   {s}
                 </li>

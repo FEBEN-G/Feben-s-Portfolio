@@ -7,10 +7,9 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
   return (
@@ -37,9 +36,6 @@ function NotFoundComponent() {
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
-  useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
-  }, [error]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -86,16 +82,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Feben — Full Stack Developer & ML Enthusiast" },
       { name: "twitter:description", content: "Portfolio of Feben — a full stack developer and machine learning enthusiast crafting fast, elegant, production-ready web experiences." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/tojyq6Y3nZgYyif0rDXOKEg54KQ2/social-images/social-1784622629138-Feben.webp" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/tojyq6Y3nZgYyif0rDXOKEg54KQ2/social-images/social-1784622629138-Feben.webp" },
+      { property: "og:image", content: "/logo.jpg" },
+      { name: "twitter:image", content: "/logo.jpg" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
+      { rel: "icon", href: "/logo.jpg", type: "image/jpeg" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&family=Syne:wght@500;600;700;800&display=swap",
       },
     ],
   }),
@@ -107,7 +104,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className="look-aurora">
       <head>
         <HeadContent />
       </head>

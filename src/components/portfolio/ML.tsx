@@ -30,13 +30,13 @@ export function ML() {
     >
       <div className="grid gap-6 lg:grid-cols-5">
         {/* Roadmap */}
-        <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-6 lg:col-span-3">
-          <div className="mb-6 flex items-center justify-between">
+        <div className="surface-panel p-6 lg:col-span-3">
+          <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Learning roadmap</div>
               <div className="mt-1 text-lg font-semibold">Building blocks → applied ML</div>
             </div>
-            <span className="rounded-full border border-brand/30 bg-brand/10 px-2.5 py-1 text-[11px] font-medium text-brand">
+            <span className="chip w-fit border-brand/40 bg-brand/10 px-2.5 py-1 text-[11px] font-medium text-brand">
               In progress
             </span>
           </div>
@@ -50,13 +50,13 @@ export function ML() {
                 transition={{ duration: 0.4, delay: i * 0.06 }}
                 className="relative"
               >
-                <span className="absolute -left-[30px] top-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-background">
+                <span className="absolute -left-[30px] top-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-background look-ember:rounded-none">
                   {r.state === "done" ? (
-                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-brand text-background">
+                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-brand text-primary-foreground look-ember:rounded-none">
                       <Check className="h-3 w-3" />
                     </span>
                   ) : r.state === "active" ? (
-                    <span className="relative flex h-3.5 w-3.5 items-center justify-center rounded-full bg-brand animate-ping-soft" />
+                    <span className="relative flex h-3.5 w-3.5 items-center justify-center rounded-full bg-brand animate-ping-soft look-ember:rounded-none" />
                   ) : (
                     <Circle className="h-3.5 w-3.5 text-muted-foreground/40" />
                   )}
@@ -75,10 +75,7 @@ export function ML() {
 
           <div className="mt-8 flex flex-wrap gap-1.5">
             {techs.map((t) => (
-              <span
-                key={t}
-                className="rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-xs text-muted-foreground"
-              >
+              <span key={t} className="chip px-2.5 py-1 text-xs text-muted-foreground">
                 {t}
               </span>
             ))}
@@ -94,14 +91,13 @@ export function ML() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.05 }}
-              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition-all hover:-translate-y-0.5 hover:border-white/20"
+              className="group relative overflow-hidden surface-panel p-5 transition-all hover:-translate-y-0.5 hover:border-brand/40"
             >
-              <div className="glass mb-3 inline-flex h-9 w-9 items-center justify-center rounded-xl">
+              <div className="glass mb-3 inline-flex h-9 w-9 items-center justify-center" style={{ borderRadius: "var(--radius)" }}>
                 <a.icon className="h-4 w-4 text-brand" />
               </div>
               <div className="text-sm font-semibold">{a.name}</div>
               <p className="mt-1 text-xs text-muted-foreground">{a.desc}</p>
-              <div className="absolute -right-8 -bottom-8 h-24 w-24 rounded-full bg-brand/10 opacity-0 blur-2xl transition-opacity group-hover:opacity-100" />
             </motion.div>
           ))}
         </div>

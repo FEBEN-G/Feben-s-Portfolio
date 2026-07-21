@@ -58,9 +58,9 @@ export function About() {
               }`}
             >
               <div className={`flex md:justify-end ${i % 2 === 1 ? "md:justify-start" : ""}`}>
-                <div className="glass relative flex h-12 w-12 items-center justify-center rounded-2xl md:h-14 md:w-14">
+                <div className="glass relative flex h-12 w-12 items-center justify-center md:h-14 md:w-14" style={{ borderRadius: "calc(var(--radius) + 8px)" }}>
                   <m.icon className="h-5 w-5 text-brand" />
-                  <span className="absolute -inset-1 -z-10 rounded-2xl bg-brand/20 blur-xl" />
+                  <span className="absolute -inset-1 -z-10 bg-brand/20 blur-xl look-ember:hidden" style={{ borderRadius: "calc(var(--radius) + 8px)" }} />
                 </div>
               </div>
               <div className={i % 2 === 1 ? "md:text-right" : ""}>

@@ -78,16 +78,16 @@ export function Projects() {
           <button
             key={c}
             onClick={() => setFilter(c)}
-            className={`relative rounded-full border px-4 py-1.5 text-sm transition ${
+            className={`relative border px-4 py-1.5 text-sm transition btn-pill ${
               filter === c
-                ? "border-white/25 bg-white/[0.06] text-foreground"
+                ? "border-brand/40 bg-brand/10 text-foreground"
                 : "border-white/10 bg-transparent text-muted-foreground hover:text-foreground"
             }`}
           >
             {filter === c && (
               <motion.span
                 layoutId="proj-filter"
-                className="absolute inset-0 -z-0 rounded-full bg-white/[0.04]"
+                className="absolute inset-0 -z-0 bg-white/[0.04] btn-pill"
                 transition={{ type: "spring", stiffness: 380, damping: 30 }}
               />
             )}
@@ -106,11 +106,15 @@ export function Projects() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 12 }}
               transition={{ duration: 0.5, delay: i * 0.04, ease: [0.2, 0.7, 0.2, 1] }}
-              className={`group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] p-6 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-white/20 md:p-8 ${i === 0 ? "md:col-span-2" : ""}`}
+              className={`group relative overflow-hidden surface-panel p-4 transition-all duration-500 hover:-translate-y-1 hover:border-brand/40 sm:p-6 md:p-8 ${i === 0 ? "md:col-span-2" : ""}`}
             >
               {/* Preview canvas */}
-              <div className={`relative mb-6 aspect-[16/9] overflow-hidden rounded-2xl bg-gradient-to-br ${p.accent} ${i === 0 ? "md:aspect-[21/9]" : ""}`}>
-                <div className="absolute inset-0 grid-bg opacity-40" />
+              <div
+                className={`relative mb-6 aspect-[16/9] overflow-hidden bg-gradient-to-br ${p.accent} ${i === 0 ? "md:aspect-[21/9]" : ""}`}
+                style={{ borderRadius: "calc(var(--panel-radius) * 0.75)" }}
+              >
+                <div className="absolute inset-0 grid-bg opacity-40 look-ember:hidden" />
+                <div className="absolute inset-0 hatch-bg opacity-50 hidden look-ember:block" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent" />
                 <div className="absolute inset-0 flex items-end p-6">
                   <div>
@@ -126,21 +130,21 @@ export function Projects() {
 
               <div className="mt-5 flex flex-wrap items-center gap-1.5">
                 {p.tech.map((t) => (
-                  <span key={t} className="rounded-full border border-white/10 bg-white/[0.03] px-2 py-0.5 text-[11px] text-muted-foreground">
+                  <span key={t} className="chip px-2 py-0.5 text-[11px] text-muted-foreground">
                     {t}
                   </span>
                 ))}
               </div>
 
-              <div className="mt-6 flex items-center gap-3">
+              <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2">
                 <a href="#" className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition group-hover:text-brand">
                   Case study <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </a>
-                <span className="h-4 w-px bg-white/10" />
+                <span className="hidden h-4 w-px bg-white/10 sm:block" />
                 <a href="#" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition hover:text-foreground">
                   <Github className="h-3.5 w-3.5" /> Code
                 </a>
-                <a href="#" className="ml-auto text-sm text-muted-foreground transition hover:text-foreground">
+                <a href="#" className="text-sm text-muted-foreground transition hover:text-foreground sm:ml-auto">
                   Live demo →
                 </a>
               </div>
