@@ -8,7 +8,7 @@ export function Footer() {
         <div>
           <div className="flex items-center gap-2 text-lg font-semibold tracking-tight">
             <span className="inline-block h-2 w-2 rounded-full bg-brand" />
-            <span className="text-gradient">Ayush.dev</span>
+            <span className="text-gradient">Feben.dev</span>
           </div>
           <p className="mt-2 max-w-sm text-sm text-muted-foreground">
             Designed and built with care. Type is Geist, motion is intentional, the rest is coffee.
@@ -28,7 +28,7 @@ export function Footer() {
         </div>
       </div>
       <div className="mt-8 flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground">
-        <span>© {new Date().getFullYear()} Ayush. All rights reserved.</span>
+        <span>© {new Date().getFullYear()} Feben. All rights reserved.</span>
         <span>Crafted with React, TypeScript & Motion.</span>
       </div>
     </footer>

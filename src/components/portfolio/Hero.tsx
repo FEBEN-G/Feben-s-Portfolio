@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
-import { ArrowRight, Download, Sparkles } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
 
 const roles = [
   "Frontend Specialist",
@@ -44,17 +44,6 @@ export function Hero() {
       />
 
       <motion.div style={{ y, opacity }} className="mx-auto w-full max-w-6xl px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs text-muted-foreground backdrop-blur"
-        >
-          <Sparkles className="h-3.5 w-3.5 text-brand" />
-          Available for new opportunities
-          <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_oklch(0.75_0.15_150)]" />
-        </motion.div>
-
         <h1 className="max-w-5xl text-[clamp(2.6rem,7vw,6.2rem)] font-semibold leading-[0.95] tracking-tight">
           <RevealLine delay={0.05}>Building digital</RevealLine>
           <RevealLine delay={0.15}>
@@ -68,7 +57,7 @@ export function Hero() {
           transition={{ delay: 0.5, duration: 0.6 }}
           className="mt-8 flex flex-wrap items-center gap-3 text-lg text-muted-foreground sm:text-xl"
         >
-          <span className="text-foreground/80">I'm Ayush —</span>
+          <span className="text-foreground/80">I'm Feben —</span>
           <div className="relative h-8 overflow-hidden">
             {roles.map((r, i) => (
               <motion.span

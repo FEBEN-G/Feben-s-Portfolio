@@ -54,7 +54,7 @@ export function Nav() {
       >
         <a href="#home" className="ml-2 mr-1 flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-semibold tracking-tight">
           <span className="inline-block h-2 w-2 rounded-full bg-brand animate-ping-soft" />
-          <span className="text-gradient">Ayush.dev</span>
+          <span className="text-gradient">Feben.dev</span>
         </a>
         <ul className="hidden items-center gap-0.5 md:flex">
           {links.map((l) => {
