@@ -25,7 +25,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Selected projects, experience, and an active machine-learning journey. Built with care.",
+          "Portfolio of Feben — a full stack developer and machine learning enthusiast crafting fast, elegant, production-ready web experiences.",
       },
     ],
   }),
