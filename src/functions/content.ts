@@ -94,6 +94,7 @@ export const saveProjectFn = createServerFn({ method: "POST" })
           desc: data.desc,
           tech: data.tech,
           accent: data.accent,
+          imageUrl: data.imageUrl,
           caseStudyUrl: data.caseStudyUrl,
           codeUrl: data.codeUrl,
           liveUrl: data.liveUrl,

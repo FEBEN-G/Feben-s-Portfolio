@@ -25,6 +25,17 @@ export const defaultContent: PortfolioContent = {
       imageUrl: "/projects/lms-dashboard.png",
     },
     {
+      id: "proj-salaysh",
+      title: "Salaysh Grand Hotel & Spa",
+      category: "Full Stack",
+      year: "2025",
+      tagline: "Hospitality site with booking-ready presentation.",
+      desc: "A polished hotel and spa presence — rooms, amenities, and a visual brand that feels like the property.",
+      tech: ["React", "TypeScript", "Tailwind"],
+      accent: "from-brand-2/50 to-brand/50",
+      imageUrl: "/projects/salaysh.png",
+    },
+    {
       id: "proj-nova",
       title: "Nova Commerce",
       category: "Full Stack",

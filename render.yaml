@@ -1,11 +1,12 @@
-# Render Blueprint — New → Blueprint → select this repo
-# Docs: https://render.com/docs/blueprint-spec
+# Render Blueprint — Dashboard → New → Blueprint → this repo
+# Or create a Web Service + Postgres manually with the same commands/env.
 
 databases:
   - name: feben-portfolio-db
     plan: free
     databaseName: portfolio
     user: portfolio
+    ipAllowList: []
 
 services:
   - type: web
@@ -13,12 +14,15 @@ services:
     runtime: node
     plan: free
     branch: main
-    buildCommand: npm install && npm run build
+    autoDeployTrigger: commit
+    buildCommand: npm ci && npm run build
     startCommand: node .output/server/index.mjs
     healthCheckPath: /
     envVars:
       - key: NODE_VERSION
         value: "22"
+      - key: NODE_ENV
+        value: production
       - key: NITRO_PRESET
         value: render_com
       - key: DATABASE_URL

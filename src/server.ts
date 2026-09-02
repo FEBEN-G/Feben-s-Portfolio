@@ -3,12 +3,31 @@ import "./lib/error-capture";
 
 import { consumeLastCapturedError } from "./lib/error-capture";
 import { renderErrorPage } from "./lib/error-page";
+import { isDatabaseConfigured } from "./server/db";
+import { ensureDatabase } from "./server/migrate";
 
 type ServerEntry = {
   fetch: (request: Request, env: unknown, ctx: unknown) => Promise<Response> | Response;
 };
 
 let serverEntryPromise: Promise<ServerEntry> | undefined;
+
+if (isDatabaseConfigured()) {
+  ensureDatabase().catch((error) => {
+    console.error("Database setup failed:", error);
+  });
+} else {
+  console.warn("DATABASE_URL is not set — serving fallback portfolio content.");
+}
+
+if (process.env.NODE_ENV === "production") {
+  if (!process.env.ADMIN_PASSWORD?.trim()) {
+    console.warn("ADMIN_PASSWORD is not set — /admin login will fail.");
+  }
+  if (!process.env.ADMIN_SESSION_SECRET || process.env.ADMIN_SESSION_SECRET.length < 32) {
+    console.warn("ADMIN_SESSION_SECRET must be at least 32 characters.");
+  }
+}
 
 async function getServerEntry(): Promise<ServerEntry> {
   if (!serverEntryPromise) {

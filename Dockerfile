@@ -24,6 +24,8 @@ RUN addgroup -g 1001 -S nodejs && \
 
 USER nodejs
 
+ENV NODE_ENV=production
+ENV PORT=3000
 EXPOSE 3000
 
 ENTRYPOINT ["dumb-init", "--"]

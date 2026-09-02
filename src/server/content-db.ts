@@ -69,19 +69,24 @@ export async function fetchPortfolioContent(): Promise<PortfolioContent> {
     return structuredClone(defaultContent);
   }
 
-  await ensureDatabase();
+  try {
+    await ensureDatabase();
 
-  const [projectsRes, experienceRes] = await Promise.all([
-    query<ProjectRow>("select * from projects order by sort_order asc, created_at desc"),
-    query<ExperienceRow>(
-      "select * from experience order by sort_order asc, created_at desc",
-    ),
-  ]);
+    const [projectsRes, experienceRes] = await Promise.all([
+      query<ProjectRow>("select * from projects order by sort_order asc, created_at desc"),
+      query<ExperienceRow>(
+        "select * from experience order by sort_order asc, created_at desc",
+      ),
+    ]);
 
-  return {
-    projects: projectsRes.rows.map(mapProject),
-    experience: experienceRes.rows.map(mapExperience),
-  };
+    return {
+      projects: projectsRes.rows.map(mapProject),
+      experience: experienceRes.rows.map(mapExperience),
+    };
+  } catch (error) {
+    console.error("Failed to load content from database:", error);
+    return structuredClone(defaultContent);
+  }
 }
 
 export async function insertProjectRow(project: Omit<Project, "id"> & { id?: string }) {
