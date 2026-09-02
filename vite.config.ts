@@ -24,6 +24,7 @@ export default defineConfig({
       },
     }),
     viteReact(),
-    nitro({ defaultPreset: "vercel" }),
+    // Override with NITRO_PRESET=render on Render, or vercel for Vercel
+    nitro({ defaultPreset: "node-server" }),
   ],
 });

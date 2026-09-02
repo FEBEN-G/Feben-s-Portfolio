@@ -1,17 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { PrefsProvider } from "../components/portfolio/prefs";
 import { Background } from "../components/portfolio/Background";
 import { Nav } from "../components/portfolio/Nav";
 import { Hero } from "../components/portfolio/Hero";
 import { About } from "../components/portfolio/About";
-import { Skills } from "../components/portfolio/Skills";
-import { ML } from "../components/portfolio/ML";
 import { Projects } from "../components/portfolio/Projects";
 import { Experience } from "../components/portfolio/Experience";
+import { Certificates } from "../components/portfolio/Certificates";
 import { Contact } from "../components/portfolio/Contact";
 import { Footer } from "../components/portfolio/Footer";
 import { Settings } from "../components/portfolio/Settings";
-
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -35,22 +32,19 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <PrefsProvider>
-      <div className="relative min-h-dvh">
-        <Background />
-        <Nav />
-        <main>
-          <Hero />
-          <About />
-          <Skills />
-          <ML />
-          <Projects />
-          <Experience />
-          <Contact />
-        </main>
-        <Footer />
-        <Settings />
-      </div>
-    </PrefsProvider>
+    <div className="relative min-h-dvh">
+      <Background />
+      <Nav />
+      <main>
+        <Hero />
+        <About />
+        <Projects />
+        <Experience />
+        <Certificates />
+        <Contact />
+      </main>
+      <Footer />
+      <Settings />
+    </div>
   );
 }

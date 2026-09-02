@@ -10,6 +10,8 @@ import {
 import { type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import { ContentProvider } from "../components/portfolio/ContentProvider";
+import { PrefsProvider } from "../components/portfolio/prefs";
 
 function NotFoundComponent() {
   return (
@@ -104,11 +106,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className="look-aurora">
+    <html lang="en" className="look-aurora" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
-      <body>
+      <body suppressHydrationWarning>
         {children}
         <Scripts />
       </body>
@@ -121,8 +123,11 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <PrefsProvider>
+        <ContentProvider>
+          <Outlet />
+        </ContentProvider>
+      </PrefsProvider>
     </QueryClientProvider>
   );
 }

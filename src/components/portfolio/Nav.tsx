@@ -5,10 +5,9 @@ import { usePrefs } from "./prefs";
 const links = [
   { href: "#home", label: "Home" },
   { href: "#about", label: "About" },
-  { href: "#skills", label: "Skills" },
-  { href: "#ml", label: "ML" },
   { href: "#projects", label: "Projects" },
   { href: "#experience", label: "Experience" },
+  { href: "#awards", label: "Awards" },
   { href: "#contact", label: "Contact" },
 ];
 

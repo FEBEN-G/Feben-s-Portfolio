@@ -1,4 +1,8 @@
-import { createStart, createMiddleware } from "@tanstack/react-start";
+import {
+  createStart,
+  createMiddleware,
+  createCsrfMiddleware,
+} from "@tanstack/react-start";
 
 import { renderErrorPage } from "./lib/error-page";
 
@@ -17,6 +21,14 @@ const errorMiddleware = createMiddleware().server(async ({ next }) => {
   }
 });
 
+const csrfMiddleware = createCsrfMiddleware({
+  // Protect mutating server functions; allow normal page navigations.
+  filter: (ctx) => {
+    const method = ctx.request.method.toUpperCase();
+    return method !== "GET" && method !== "HEAD" && method !== "OPTIONS";
+  },
+});
+
 export const startInstance = createStart(() => ({
-  requestMiddleware: [errorMiddleware],
+  requestMiddleware: [csrfMiddleware, errorMiddleware],
 }));

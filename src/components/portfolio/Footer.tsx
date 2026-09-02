@@ -28,6 +28,7 @@ export function Footer() {
         <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
           <a href="#about" className="hover:text-foreground">About</a>
           <a href="#projects" className="hover:text-foreground">Projects</a>
+          <a href="#awards" className="hover:text-foreground">Awards</a>
           <a href="#contact" className="hover:text-foreground">Contact</a>
           <a href="https://github.com/FEBEN-G" target="_blank" rel="noreferrer" className="hover:text-foreground">GitHub</a>
           <a
