@@ -22,11 +22,18 @@ const errorMiddleware = createMiddleware().server(async ({ next }) => {
 });
 
 const csrfMiddleware = createCsrfMiddleware({
-  // Protect mutating server functions; allow normal page navigations.
-  filter: (ctx) => {
-    const method = ctx.request.method.toUpperCase();
-    return method !== "GET" && method !== "HEAD" && method !== "OPTIONS";
+  filter: (ctx) => ctx.handlerType === "serverFn",
+  origin: (ctx) => {
+    const forwardedHost = ctx.request.headers.get("x-forwarded-host");
+    const forwardedProto = ctx.request.headers.get("x-forwarded-proto") ?? "https";
+    if (forwardedHost) {
+      return `${forwardedProto}://${forwardedHost.split(",")[0]!.trim()}`;
+    }
+    const renderUrl = process.env.RENDER_EXTERNAL_URL?.replace(/\/$/, "");
+    if (renderUrl) return renderUrl;
+    return new URL(ctx.request.url).origin;
   },
+  allowRequestsWithoutOriginCheck: true,
 });
 
 export const startInstance = createStart(() => ({

@@ -56,8 +56,11 @@ function AdminApp() {
             hasSessionSecret: status.hasSessionSecret,
           });
         }
-      } catch {
-        if (!cancelled) setAuthed(false);
+      } catch (err) {
+        if (!cancelled) {
+          setAuthed(false);
+          setError(err instanceof Error ? err.message : "Could not reach the admin API.");
+        }
       } finally {
         if (!cancelled) setChecking(false);
       }
