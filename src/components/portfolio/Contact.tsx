@@ -8,6 +8,20 @@ const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID as string | u
 const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string | undefined;
 const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string | undefined;
 
+if (EMAILJS_PUBLIC_KEY) {
+  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+}
+
+function emailJsErrorText(err: unknown): string {
+  if (err && typeof err === "object") {
+    const rec = err as { text?: unknown; message?: unknown };
+    if (typeof rec.text === "string" && rec.text.trim()) return rec.text.trim();
+    if (typeof rec.message === "string" && rec.message.trim()) return rec.message.trim();
+  }
+  if (err instanceof Error && err.message.trim()) return err.message.trim();
+  return "";
+}
+
 export function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
@@ -32,37 +46,23 @@ export function Contact() {
     setErrorMessage("");
 
     try {
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        {
-          from_name: fromName,
-          from_email: fromEmail,
-          reply_to: fromEmail,
-          user_name: fromName,
-          user_email: fromEmail,
-          email: fromEmail,
-          name: fromName,
-          subject,
-          message,
-        },
-        { publicKey: EMAILJS_PUBLIC_KEY },
-      );
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        from_name: fromName,
+        from_email: fromEmail,
+        reply_to: fromEmail,
+        subject,
+        message,
+      });
       setStatus("sent");
       form.reset();
       setTimeout(() => setStatus("idle"), 3000);
     } catch (err) {
       console.error(err);
-      const detail =
-        err && typeof err === "object" && "text" in err
-          ? String((err as { text?: string }).text)
-          : err instanceof Error
-            ? err.message
-            : "";
+      const detail = emailJsErrorText(err);
       setErrorMessage(
         detail
           ? `EmailJS error: ${detail}`
-          : "Something went wrong. Please try again or email me directly.",
+          : "EmailJS returned 400. In the template, set To Email to your Gmail (not a variable) and Reply To to {{from_email}}. Do not put {{from_email}} in From Email.",
       );
       setStatus("error");
     }
