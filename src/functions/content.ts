@@ -15,6 +15,7 @@ import {
   loginSchema,
   projectInputSchema,
 } from "./schemas";
+import { envFlags } from "../server/runtime-env";
 import { getAdminSession, requireAdmin, verifyAdminPassword } from "../server/session";
 import { isDatabaseConfigured, query } from "../server/db";
 
@@ -23,15 +24,16 @@ function toErrorMessage(err: unknown) {
 }
 
 async function dbInfo() {
+  const flags = envFlags();
   const dbConfigured = isDatabaseConfigured();
   if (!dbConfigured) {
-    return { dbConfigured: false, dbReachable: false as boolean };
+    return { dbConfigured: false, dbReachable: false as boolean, ...flags };
   }
   try {
     await query("select 1 as ok");
-    return { dbConfigured: true, dbReachable: true };
+    return { dbConfigured: true, dbReachable: true, ...flags };
   } catch {
-    return { dbConfigured: true, dbReachable: false };
+    return { dbConfigured: true, dbReachable: false, ...flags };
   }
 }
 

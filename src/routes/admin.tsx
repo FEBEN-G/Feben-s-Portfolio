@@ -37,13 +37,25 @@ function AdminApp() {
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const [tab, setTab] = useState<"projects" | "experience">("projects");
+  const [envReady, setEnvReady] = useState({
+    hasDatabaseUrl: false,
+    hasAdminPassword: false,
+    hasSessionSecret: false,
+  });
 
   useEffect(() => {
     let cancelled = false;
     void (async () => {
       try {
         const status = await getAdminStatusFn();
-        if (!cancelled) setAuthed(status.authenticated);
+        if (!cancelled) {
+          setAuthed(status.authenticated);
+          setEnvReady({
+            hasDatabaseUrl: status.hasDatabaseUrl,
+            hasAdminPassword: status.hasAdminPassword,
+            hasSessionSecret: status.hasSessionSecret,
+          });
+        }
       } catch {
         if (!cancelled) setAuthed(false);
       } finally {
@@ -98,23 +110,21 @@ function AdminApp() {
           </p>
           {!dbConfigured && (
             <p className="mt-4 rounded border border-amber-500/40 bg-amber-500/10 px-3 py-2 text-xs text-amber-200">
-              Missing env. Set{" "}
-              <code className="text-foreground">DATABASE_URL</code>,{" "}
-              <code className="text-foreground">ADMIN_PASSWORD</code>, and{" "}
-              <code className="text-foreground">ADMIN_SESSION_SECRET</code> in{" "}
-              <code className="text-foreground">.env</code>, then restart{" "}
+              Postgres is not connected. On Render, open the web service → Environment
+              and confirm <code className="text-foreground">DATABASE_URL</code> is
+              linked from the database, then redeploy. Locally, put it in{" "}
+              <code className="text-foreground">.env</code> and restart{" "}
               <code className="text-foreground">npm run dev</code>.
+              {!envReady.hasDatabaseUrl && " DATABASE_URL is missing."}
+              {!envReady.hasAdminPassword && " ADMIN_PASSWORD is missing."}
+              {!envReady.hasSessionSecret && " ADMIN_SESSION_SECRET must be at least 32 characters."}
             </p>
           )}
           {dbConfigured && !dbReachable && (
             <p className="mt-4 rounded border border-amber-500/40 bg-amber-500/10 px-3 py-2 text-xs text-amber-200">
-              Cannot reach Postgres. Make sure the PostgreSQL Windows service is
-              running and{" "}
-              <code className="text-foreground">DATABASE_URL</code> points to{" "}
-              <code className="text-foreground">
-                postgresql://postgres:postgres@localhost:5432/portfolio
-              </code>
-              .
+              DATABASE_URL is set, but the app cannot reach Postgres. On Render, wait
+              until the database is running and both services are in the same region.
+              Locally, start the PostgreSQL Windows service.
             </p>
           )}
           <label className="mt-5 block text-xs uppercase tracking-wider text-muted-foreground">

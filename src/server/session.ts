@@ -1,4 +1,4 @@
-import "./env";
+import { getEnv } from "./runtime-env";
 import { createHash, timingSafeEqual } from "node:crypto";
 import { useSession, type SessionConfig } from "@tanstack/react-start/server";
 
@@ -7,7 +7,7 @@ export type AdminSessionData = {
 };
 
 function sessionPassword() {
-  const secret = process.env.ADMIN_SESSION_SECRET?.trim();
+  const secret = getEnv("ADMIN_SESSION_SECRET");
   if (!secret || secret.length < 32) {
     throw new Error(
       "Set ADMIN_SESSION_SECRET to a random string of at least 32 characters.",
@@ -29,7 +29,7 @@ export function getAdminSessionConfig(): SessionConfig {
     maxAge: 60 * 60 * 24 * 7, // 7 days
     cookie: {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: getEnv("NODE_ENV") === "production",
       sameSite: "lax",
       path: "/",
     },
@@ -49,7 +49,7 @@ export async function requireAdmin() {
 }
 
 export function verifyAdminPassword(password: string) {
-  const expected = process.env.ADMIN_PASSWORD;
+  const expected = getEnv("ADMIN_PASSWORD");
   if (!expected) {
     throw new Error("ADMIN_PASSWORD is not set on the server.");
   }

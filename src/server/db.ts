@@ -1,9 +1,9 @@
-import "./env";
+import { getEnv } from "./runtime-env";
 import { Pool, type QueryResultRow } from "pg";
 
 let pool: Pool | null = null;
 function databaseUrl() {
-  return process.env.DATABASE_URL?.trim() ?? "";
+  return getEnv("DATABASE_URL");
 }
 
 /** True when DATABASE_URL is a real Postgres connection string. */
@@ -20,8 +20,8 @@ export function isDatabaseConfigured() {
 
 function sslOption() {
   const url = databaseUrl();
-  if (process.env.DATABASE_SSL === "false") return false;
-  if (process.env.DATABASE_SSL === "true") return { rejectUnauthorized: false };
+  if (getEnv("DATABASE_SSL") === "false") return false;
+  if (getEnv("DATABASE_SSL") === "true") return { rejectUnauthorized: false };
   // Neon / Render / most cloud hosts need SSL
   if (
     url.includes("localhost") ||
