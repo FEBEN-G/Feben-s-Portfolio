@@ -22,14 +22,30 @@ export function Contact() {
     }
 
     const form = e.currentTarget;
+    const data = new FormData(form);
+    const fromName = String(data.get("from_name") ?? "").trim();
+    const fromEmail = String(data.get("from_email") ?? "").trim();
+    const subject = String(data.get("subject") ?? "").trim();
+    const message = String(data.get("message") ?? "").trim();
+
     setStatus("sending");
     setErrorMessage("");
 
     try {
-      await emailjs.sendForm(
+      await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
-        form,
+        {
+          from_name: fromName,
+          from_email: fromEmail,
+          reply_to: fromEmail,
+          user_name: fromName,
+          user_email: fromEmail,
+          email: fromEmail,
+          name: fromName,
+          subject,
+          message,
+        },
         { publicKey: EMAILJS_PUBLIC_KEY },
       );
       setStatus("sent");
@@ -37,7 +53,17 @@ export function Contact() {
       setTimeout(() => setStatus("idle"), 3000);
     } catch (err) {
       console.error(err);
-      setErrorMessage("Something went wrong. Please try again or email me directly.");
+      const detail =
+        err && typeof err === "object" && "text" in err
+          ? String((err as { text?: string }).text)
+          : err instanceof Error
+            ? err.message
+            : "";
+      setErrorMessage(
+        detail
+          ? `EmailJS error: ${detail}`
+          : "Something went wrong. Please try again or email me directly.",
+      );
       setStatus("error");
     }
   }
