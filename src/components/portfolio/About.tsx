@@ -5,33 +5,33 @@ import { GraduationCap, Code2, Layers, Brain, Rocket } from "lucide-react";
 const milestones = [
   {
     icon: GraduationCap,
-    year: "2021",
+    year: "2022",
     title: "Student",
-    desc: "Started my CS journey — curious about how the web is built and why great products feel effortless.",
+    desc: "Started my Software Engineering journey at Addis Ababa University, curious about how technology and the web work.",
   },
   {
     icon: Code2,
-    year: "2022",
+    year: "2023",
     title: "Frontend Development",
-    desc: "Fell in love with React, TypeScript and design systems. Built interfaces that felt fast and intentional.",
+    desc: "Fell in love with React, TypeScript, and modern UI design. Built interfaces that were fast, clean, and intentional.",
   },
   {
     icon: Layers,
-    year: "2023",
-    title: "Full Stack Development",
-    desc: "Expanded into Node, databases, and cloud. Shipped end-to-end products with real users and real constraints.",
+    year: "2024",
+    title: "Full-Stack Development",
+    desc: "Expanded into Node.js, databases, and cloud technologies. Started building complete applications from frontend to backend.",
   },
   {
     icon: Brain,
-    year: "2024",
+    year: "2025",
     title: "Machine Learning",
-    desc: "Started applying ML — from data pipelines and classical models to deep learning for real-world problems.",
+    desc: "Started exploring Machine Learning, from data processing and classical models to deep learning.",
   },
   {
     icon: Rocket,
     year: "Now",
-    title: "Future Vision",
-    desc: "Building at the intersection of product engineering and applied AI — thoughtful, human-first software.",
+    title: "Software Development + ML",
+    desc: "Currently focused on Full-Stack Development while continuously advancing my Machine Learning skills and exploring how to integrate ML into real-world software.",
   },
 ];
 
@@ -41,7 +41,7 @@ export function About() {
       id="about"
       eyebrow="About"
       title={<>A short journey, <span className="text-gradient">told visually.</span></>}
-      description="From first line of HTML to training my first neural network — this is how I got here, and where I'm heading."
+      description="From my first lines of HTML to building full-stack applications and exploring machine learning — this is how I got here and where I'm heading."
     >
       <div className="relative">
         <div className="absolute left-6 top-2 bottom-2 w-px bg-gradient-to-b from-brand/60 via-white/10 to-transparent md:left-1/2" />

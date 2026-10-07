@@ -47,11 +47,13 @@ export function Contact() {
 
     try {
       await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        name: fromName,
         from_name: fromName,
         from_email: fromEmail,
         reply_to: fromEmail,
         subject,
         message,
+        time: new Date().toLocaleString(),
       });
       setStatus("sent");
       form.reset();
