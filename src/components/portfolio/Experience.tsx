@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { Section } from "./Section";
 import { Briefcase, Brain, Code2, Layers } from "lucide-react";
-import { useContent } from "./ContentProvider";
+import { defaultContent } from "../../data/default-content";
 import type { ExperienceIcon } from "../../data/types";
 
 const ICONS: Record<ExperienceIcon, typeof Layers> = {
@@ -12,8 +12,7 @@ const ICONS: Record<ExperienceIcon, typeof Layers> = {
 };
 
 export function Experience() {
-  const { content, loading, error } = useContent();
-  const items = content.experience;
+  const items = defaultContent.experience;
 
   return (
     <Section
@@ -24,15 +23,8 @@ export function Experience() {
     >
       <div className="relative">
         <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-brand/40 via-foreground/10 to-transparent" />
-        {error && (
-          <p className="mb-4 pl-16 text-sm text-amber-200/90">
-            Couldn’t refresh experience from the database — showing fallback content.
-          </p>
-        )}
-        {loading ? (
-          <p className="pl-16 text-sm text-muted-foreground">Loading experience…</p>
-        ) : items.length === 0 ? (
-          <p className="pl-16 text-sm text-muted-foreground">No experience yet. Add some from the admin panel.</p>
+        {items.length === 0 ? (
+          <p className="pl-16 text-sm text-muted-foreground">No experience listed yet.</p>
         ) : (
           <ul className="space-y-6">
             {items.map((it, i) => {

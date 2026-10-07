@@ -2,15 +2,14 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Section } from "./Section";
 import { ArrowUpRight, Github } from "lucide-react";
-import { useContent } from "./ContentProvider";
+import { defaultContent } from "../../data/default-content";
 import { toDisplayImageUrl } from "../../lib/image-url";
 
 type Filter = "All" | "Full Stack" | "Machine Learning";
 
 export function Projects() {
-  const { content, loading, error } = useContent();
   const [filter, setFilter] = useState<Filter>("All");
-  const projects = content.projects;
+  const projects = defaultContent.projects;
   const filtered = projects.filter((p) => filter === "All" || p.category === filter);
 
   return (
@@ -43,16 +42,8 @@ export function Projects() {
         ))}
       </div>
 
-      {error && (
-        <p className="mb-4 text-sm text-amber-200/90">
-          Couldn’t refresh projects from the database — showing fallback content.
-        </p>
-      )}
-
-      {loading ? (
-        <p className="text-sm text-muted-foreground">Loading projects…</p>
-      ) : filtered.length === 0 ? (
-        <p className="text-sm text-muted-foreground">No projects yet. Add some from the admin panel.</p>
+      {filtered.length === 0 ? (
+        <p className="text-sm text-muted-foreground">No projects in this category yet.</p>
       ) : (
         <motion.ul layout className="grid grid-cols-1 gap-5 md:grid-cols-2">
           <AnimatePresence mode="popLayout">

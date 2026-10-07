@@ -1,40 +1,13 @@
-import "./server/env";
 import "./lib/error-capture";
 
 import { consumeLastCapturedError } from "./lib/error-capture";
 import { renderErrorPage } from "./lib/error-page";
-import { isDatabaseConfigured } from "./server/db";
-import { ensureDatabase } from "./server/migrate";
-import { getEnv } from "./server/runtime-env";
 
 type ServerEntry = {
   fetch: (request: Request, env: unknown, ctx: unknown) => Promise<Response> | Response;
 };
 
 let serverEntryPromise: Promise<ServerEntry> | undefined;
-let dbBootstrapped = false;
-
-function bootstrapDatabase() {
-  if (dbBootstrapped) return;
-  dbBootstrapped = true;
-
-  if (getEnv("NODE_ENV") === "production") {
-    if (!getEnv("ADMIN_PASSWORD")) {
-      console.warn("ADMIN_PASSWORD is not set — /admin login will fail.");
-    }
-    if (getEnv("ADMIN_SESSION_SECRET").length < 32) {
-      console.warn("ADMIN_SESSION_SECRET must be at least 32 characters.");
-    }
-  }
-
-  if (isDatabaseConfigured()) {
-    ensureDatabase().catch((error) => {
-      console.error("Database setup failed:", error);
-    });
-  } else {
-    console.warn("DATABASE_URL is not set — serving fallback portfolio content.");
-  }
-}
 
 async function getServerEntry(): Promise<ServerEntry> {
   if (!serverEntryPromise) {
@@ -73,7 +46,6 @@ function isH3SwallowedErrorBody(body: string): boolean {
 
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
-    bootstrapDatabase();
     try {
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);

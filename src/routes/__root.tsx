@@ -10,7 +10,6 @@ import {
 import { type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { ContentProvider } from "../components/portfolio/ContentProvider";
 import { PrefsProvider } from "../components/portfolio/prefs";
 
 function NotFoundComponent() {
@@ -124,9 +123,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <PrefsProvider>
-        <ContentProvider>
-          <Outlet />
-        </ContentProvider>
+        <Outlet />
       </PrefsProvider>
     </QueryClientProvider>
   );

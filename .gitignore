@@ -39,6 +39,3 @@ dist-ssr
 *.sln
 *.sw?
 
-# Local PGlite data
-.data/
-

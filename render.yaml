@@ -1,13 +1,3 @@
-# Render Blueprint — Dashboard → New → Blueprint → this repo
-# Or create a Web Service + Postgres manually with the same commands/env.
-
-databases:
-  - name: feben-portfolio-db
-    plan: free
-    databaseName: portfolio
-    user: portfolio
-    ipAllowList: []
-
 services:
   - type: web
     name: feben-portfolio
@@ -25,14 +15,6 @@ services:
         value: production
       - key: NITRO_PRESET
         value: render_com
-      - key: DATABASE_URL
-        fromDatabase:
-          name: feben-portfolio-db
-          property: connectionString
-      - key: ADMIN_PASSWORD
-        sync: false
-      - key: ADMIN_SESSION_SECRET
-        generateValue: true
       - key: VITE_EMAILJS_SERVICE_ID
         sync: false
       - key: VITE_EMAILJS_TEMPLATE_ID
