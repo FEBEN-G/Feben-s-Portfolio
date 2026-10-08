@@ -102,7 +102,7 @@ export function Settings() {
               </Group>
 
               <Group icon={<Type className="h-4 w-4" />} title="Text size" hint="Scale the entire interface.">
-                <div className="grid grid-cols-4 gap-2">
+                <div className="grid grid-cols-2 gap-2 min-[360px]:grid-cols-4">
                   {(["sm", "md", "lg", "xl"] as Size[]).map((s) => (
                     <SegBtn key={s} active={size === s} onClick={() => setSize(s)}>
                       <span
@@ -120,7 +120,7 @@ export function Settings() {
               </Group>
 
               <Group icon={<Sparkles className="h-4 w-4" />} title="Accent" hint="Signature color for the current look.">
-                <div className="grid grid-cols-4 gap-2">
+                <div className="grid grid-cols-2 gap-2 min-[360px]:grid-cols-4">
                   {accents.map((a) => {
                     const isActive = accent === a.id;
                     return (

@@ -57,7 +57,7 @@ export function Certificates() {
           <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[radial-gradient(circle,color-mix(in_oklab,var(--brand)_28%,transparent),transparent_70%)] blur-2xl" />
           <div className="pointer-events-none absolute -bottom-20 -left-16 h-56 w-56 rounded-full bg-[radial-gradient(circle,color-mix(in_oklab,var(--brand-2)_22%,transparent),transparent_70%)] blur-2xl" />
 
-          <div className="relative grid items-center gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="relative grid min-w-0 items-center gap-6 sm:gap-8 lg:grid-cols-[1.05fr_0.95fr]">
             <button
               type="button"
               onClick={() =>
@@ -85,7 +85,7 @@ export function Certificates() {
               </div>
             </button>
 
-            <div>
+            <div className="min-w-0">
               <div className="flex flex-wrap items-center gap-2">
                 <span className="chip inline-flex items-center gap-1.5 border-amber-300/30 bg-amber-200/10 px-2.5 py-1 text-[11px] font-medium text-amber-100">
                   <Trophy className="h-3.5 w-3.5" />
@@ -109,7 +109,7 @@ export function Certificates() {
                 credits to continue developing the project.
               </p>
 
-              <p className="mt-5 rounded-xl border border-white/10 bg-white/[0.03] px-3.5 py-3 text-xs leading-relaxed text-foreground/90 sm:text-sm">
+              <p className="mt-5 break-words rounded-xl border border-white/10 bg-white/[0.03] px-3.5 py-3 text-xs leading-relaxed text-foreground/90 sm:text-sm">
                 Achievement: 🥈 2nd Place | Event: Cursor AI Hackathon Ethiopia | Project: Negarit AI
               </p>
 
@@ -134,8 +134,8 @@ export function Certificates() {
         >
           <div className="pointer-events-none absolute -right-16 top-0 h-64 w-64 rounded-full bg-[radial-gradient(circle,oklch(0.75_0.16_55_/_0.22),transparent_70%)] blur-2xl" />
 
-          <div className="relative grid items-start gap-8 lg:grid-cols-[0.92fr_1.08fr]">
-            <div className="order-2 lg:order-1">
+          <div className="relative grid min-w-0 items-start gap-6 sm:gap-8 lg:grid-cols-[0.92fr_1.08fr]">
+            <div className="order-2 min-w-0 lg:order-1">
               <div className="flex flex-wrap items-center gap-2">
                 <span className="chip inline-flex items-center gap-1.5 border-orange-400/35 bg-orange-400/10 px-2.5 py-1 text-[11px] font-medium text-orange-200">
                   <Award className="h-3.5 w-3.5" />
@@ -157,7 +157,7 @@ export function Certificates() {
                 deployment — the kind of muscle you only build by finishing weekly challenges under pressure.
               </p>
 
-              <p className="mt-5 rounded-xl border border-white/10 bg-white/[0.03] px-3.5 py-3 text-xs leading-relaxed text-foreground/90 sm:text-sm">
+              <p className="mt-5 break-words rounded-xl border border-white/10 bg-white/[0.03] px-3.5 py-3 text-xs leading-relaxed text-foreground/90 sm:text-sm">
                 Achievement: 🏅 With Distinction | Program: Kifiya AI Mastery | Partners: Mastercard Foundation ·
                 Kifiya · 10 Academy
               </p>

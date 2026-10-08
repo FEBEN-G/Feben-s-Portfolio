@@ -44,8 +44,8 @@ export function About() {
       description="From my first lines of HTML to building full-stack applications and exploring machine learning — this is how I got here and where I'm heading."
     >
       <div className="relative">
-        <div className="absolute left-6 top-2 bottom-2 w-px bg-gradient-to-b from-brand/60 via-white/10 to-transparent md:left-1/2" />
-        <ul className="space-y-14">
+        <div className="absolute left-5 top-2 bottom-2 w-px bg-gradient-to-b from-brand/60 via-white/10 to-transparent sm:left-6 md:left-1/2" />
+        <ul className="space-y-10 sm:space-y-14">
           {milestones.map((m, i) => (
             <motion.li
               key={m.title}
@@ -53,17 +53,17 @@ export function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.6, delay: i * 0.05, ease: [0.2, 0.7, 0.2, 1] }}
-              className={`relative grid grid-cols-[3rem_1fr] gap-4 md:grid-cols-2 md:gap-12 ${
+              className={`relative grid min-w-0 grid-cols-[2.5rem_minmax(0,1fr)] gap-3 sm:grid-cols-[3rem_minmax(0,1fr)] sm:gap-4 md:grid-cols-2 md:gap-12 ${
                 i % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""
               }`}
             >
               <div className={`flex md:justify-end ${i % 2 === 1 ? "md:justify-start" : ""}`}>
-                <div className="glass relative flex h-12 w-12 items-center justify-center md:h-14 md:w-14" style={{ borderRadius: "calc(var(--radius) + 8px)" }}>
+                <div className="glass relative flex h-10 w-10 items-center justify-center sm:h-12 sm:w-12 md:h-14 md:w-14" style={{ borderRadius: "calc(var(--radius) + 8px)" }}>
                   <m.icon className="h-5 w-5 text-brand" />
                   <span className="absolute -inset-1 -z-10 bg-brand/20 blur-xl look-ember:hidden" style={{ borderRadius: "calc(var(--radius) + 8px)" }} />
                 </div>
               </div>
-              <div className={i % 2 === 1 ? "md:text-right" : ""}>
+              <div className={`min-w-0 ${i % 2 === 1 ? "md:text-right" : ""}`}>
                 <div className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">{m.year}</div>
                 <div className="mt-1 text-xl font-semibold tracking-tight">{m.title}</div>
                 <p className="mt-2 max-w-md text-sm leading-relaxed text-muted-foreground md:max-w-md">

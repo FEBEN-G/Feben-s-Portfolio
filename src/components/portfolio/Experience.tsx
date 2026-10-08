@@ -22,7 +22,7 @@ export function Experience() {
       description="Where I've shipped, learned, and grown."
     >
       <div className="relative">
-        <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-brand/40 via-foreground/10 to-transparent" />
+        <div className="absolute left-5 top-0 bottom-0 w-px bg-gradient-to-b from-brand/40 via-foreground/10 to-transparent sm:left-6" />
         {items.length === 0 ? (
           <p className="pl-16 text-sm text-muted-foreground">No experience listed yet.</p>
         ) : (
@@ -36,17 +36,17 @@ export function Experience() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-60px" }}
                   transition={{ duration: 0.55, delay: i * 0.06 }}
-                  className="relative grid grid-cols-[3rem_1fr] gap-4"
+                  className="relative grid min-w-0 grid-cols-[2.5rem_minmax(0,1fr)] gap-3 sm:grid-cols-[3rem_minmax(0,1fr)] sm:gap-4"
                 >
                   <div className="relative">
                     <div
-                      className="glass flex h-12 w-12 items-center justify-center"
+                      className="glass flex h-10 w-10 items-center justify-center sm:h-12 sm:w-12"
                       style={{ borderRadius: "calc(var(--radius) + 8px)" }}
                     >
                       <Icon className="h-4.5 w-4.5 text-brand" />
                     </div>
                   </div>
-                  <div className="surface-panel p-5 transition-colors hover:border-brand/35">
+                  <div className="surface-panel min-w-0 p-4 transition-colors hover:border-brand/35 sm:p-5">
                     <div className="flex flex-col gap-1 sm:flex-row sm:flex-wrap sm:items-baseline sm:justify-between sm:gap-2">
                       <div>
                         <div className="text-[10px] uppercase tracking-[0.24em] text-muted-foreground look-ember:text-brand look-ember:font-mono">
@@ -55,7 +55,7 @@ export function Experience() {
                         <div className="mt-1 text-base font-semibold tracking-tight">{it.role}</div>
                         <div className="text-sm text-muted-foreground">{it.org}</div>
                       </div>
-                      <span className="chip w-fit px-2.5 py-0.5 text-[11px] text-muted-foreground">
+                      <span className="chip max-w-full break-words px-2.5 py-0.5 text-[11px] text-muted-foreground">
                         {it.period} · {it.location}
                       </span>
                     </div>

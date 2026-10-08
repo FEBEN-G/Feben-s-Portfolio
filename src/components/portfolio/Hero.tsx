@@ -170,20 +170,9 @@ export function Hero() {
               className="inline-flex items-center gap-2 px-3 py-3 text-sm text-muted-foreground transition hover:text-foreground"
             >
               <Download className="h-4 w-4" />
-              Resume
+              CV
             </a>
           </motion.div>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          className="absolute bottom-6 left-1/2 -translate-x-1/2 font-mono text-[10px] uppercase tracking-[0.32em] text-muted-foreground"
-        >
-          <div className="flex flex-col items-center gap-2">
-            <span>Scroll</span>
-            <span className="block h-8 w-px origin-top bg-gradient-to-b from-brand to-transparent" />
-          </div>
         </motion.div>
       </section>
     );
@@ -262,21 +251,9 @@ export function Hero() {
             className="inline-flex items-center gap-2 rounded-full px-4 py-3 text-sm text-muted-foreground transition hover:text-foreground"
           >
             <Download className="h-4 w-4" />
-            Resume
+            CV
           </a>
         </motion.div>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.4 }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-[0.3em] text-muted-foreground"
-      >
-        <div className="flex flex-col items-center gap-2">
-          <span>Scroll</span>
-          <span className="block h-8 w-px bg-gradient-to-b from-white/40 to-transparent" />
-        </div>
       </motion.div>
     </section>
   );

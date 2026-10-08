@@ -19,12 +19,12 @@ export function Projects() {
       title={<>Projects I'm <span className="text-gradient">proud to ship.</span></>}
       description="A curated slice of what I've built recently — spanning full-stack products and machine learning experiments."
     >
-      <div className="mb-10 flex flex-wrap items-center gap-2">
+      <div className="mb-8 grid grid-cols-1 gap-2 min-[380px]:grid-cols-3 sm:mb-10 sm:flex sm:flex-wrap sm:items-center">
         {(["All", "Full Stack", "Machine Learning"] as Filter[]).map((c) => (
           <button
             key={c}
             onClick={() => setFilter(c)}
-            className={`relative border px-4 py-1.5 text-sm transition btn-pill ${
+            className={`relative w-full border px-3 py-2 text-sm transition btn-pill sm:w-auto sm:px-4 sm:py-1.5 ${
               filter === c
                 ? "border-brand/40 bg-brand/10 text-foreground"
                 : "border-white/10 bg-transparent text-muted-foreground hover:text-foreground"
@@ -55,10 +55,10 @@ export function Projects() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 12 }}
                 transition={{ duration: 0.5, delay: i * 0.04, ease: [0.2, 0.7, 0.2, 1] }}
-                className={`group relative overflow-hidden surface-panel p-4 transition-all duration-500 hover:-translate-y-1 hover:border-brand/40 sm:p-6 md:p-8 ${i === 0 ? "md:col-span-2" : ""}`}
+                className={`group relative min-w-0 overflow-hidden surface-panel p-4 transition-all duration-500 hover:-translate-y-1 hover:border-brand/40 sm:p-6 md:p-8 ${i === 0 ? "md:col-span-2" : ""}`}
               >
                 <div
-                  className={`relative mb-6 aspect-[16/9] overflow-hidden bg-gradient-to-br ${p.accent} ${i === 0 ? "md:aspect-[21/9]" : ""}`}
+                  className={`relative mb-4 aspect-[16/10] overflow-hidden bg-gradient-to-br sm:mb-6 sm:aspect-[16/9] ${p.accent} ${i === 0 ? "md:aspect-[21/9]" : ""}`}
                   style={{ borderRadius: "calc(var(--panel-radius) * 0.75)" }}
                 >
                   {toDisplayImageUrl(p.imageUrl) ? (
@@ -78,12 +78,12 @@ export function Projects() {
                       <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent" />
                     </>
                   )}
-                  <div className="absolute inset-0 flex items-end p-6">
-                    <div>
+                  <div className="absolute inset-0 flex items-end p-4 sm:p-6">
+                    <div className="min-w-0">
                       <div className="text-[10px] uppercase tracking-[0.25em] text-white/80">
                         {p.category} · {p.year}
                       </div>
-                      <div className="mt-1 text-2xl font-semibold tracking-tight text-white drop-shadow-sm">
+                      <div className="mt-1 text-xl font-semibold leading-tight tracking-tight text-white drop-shadow-sm sm:text-2xl">
                         {p.title}
                       </div>
                     </div>

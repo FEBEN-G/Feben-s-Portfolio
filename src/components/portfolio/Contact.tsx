@@ -79,7 +79,7 @@ export function Contact() {
     >
       <div className="grid gap-6 lg:grid-cols-5">
         <div className="lg:col-span-2 space-y-4">
-          <div className="surface-panel p-6">
+          <div className="surface-panel p-4 sm:p-6">
             <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">
               <span className="h-2 w-2 rounded-full bg-emerald-400 animate-ping-soft" />
               Available
@@ -116,7 +116,7 @@ export function Contact() {
 
         <form
           onSubmit={handleSubmit}
-          className="surface-panel p-6 lg:col-span-3"
+          className="surface-panel min-w-0 p-4 sm:p-6 lg:col-span-3"
         >
           <div className="grid gap-4 sm:grid-cols-2">
             <Field label="Name" name="from_name" placeholder="Your name" />
